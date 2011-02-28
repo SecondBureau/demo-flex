@@ -1,0 +1,127 @@
+<?xml version="1.0"?>
+
+<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+  xmlns:s="library://ns.adobe.com/flex/spark"
+  xmlns:mx="library://ns.adobe.com/flex/mx" width="1000" height="800"
+  creationComplete="helloService.send()">
+
+  <fx:Script>
+    <![CDATA[
+      import mx.rpc.events.ResultEvent;
+
+      [Bindable]
+      private var image_src:String = "";
+
+      private function update_image(event:ResultEvent):void
+      {
+        image_src = String(event.result);
+      }
+    ]]>
+  </fx:Script>
+  <fx:Declarations>
+	<s:Sequence id="parallelRMForward"
+            target="{myImage}">
+		<s:Parallel>
+		    <s:Rotate
+		        angleBy="180"
+		        autoCenterTransform="true"/>
+		    <s:Move
+		        xBy="100"
+		        autoCenterTransform="true"/>
+		</s:Parallel>
+		<s:Parallel>
+		    <s:Rotate
+		        angleBy="180"
+		        autoCenterTransform="true"/>
+		    <s:Move
+		        xBy="100"
+			yBy="100"
+		        autoCenterTransform="true"/>
+		</s:Parallel>
+		<s:Parallel>
+		    <s:Rotate
+		        angleBy="180"
+		        autoCenterTransform="true"/>
+		    <s:Move
+		        xBy="100"
+		        autoCenterTransform="true"/>
+		</s:Parallel>
+		<s:Parallel>
+		    <s:Rotate
+		        angleBy="180"
+		        autoCenterTransform="true"/>
+		    <s:Move
+		        xBy="100"
+			yBy="100"
+		        autoCenterTransform="true"/>
+		</s:Parallel>
+		<s:Parallel>
+		    <s:Rotate
+		        angleBy="180"
+		        autoCenterTransform="true"/>
+		    <s:Move
+		        xBy="100"
+		        autoCenterTransform="true"/>
+		</s:Parallel>
+	</s:Sequence>
+	<s:Sequence id="parallelRMBack"
+            target="{myImage}">
+		<s:Parallel>
+		    <s:Rotate
+		        angleBy="180"
+		        autoCenterTransform="true"/>
+		    <s:Move
+		        xBy="-100"
+		        autoCenterTransform="true"/>
+		</s:Parallel>
+		<s:Parallel>
+		    <s:Rotate
+		        angleBy="180"
+		        autoCenterTransform="true"/>
+		    <s:Move
+		        xBy="-100"
+			yBy="-100"
+		        autoCenterTransform="true"/>
+		</s:Parallel>
+		<s:Parallel>
+		    <s:Rotate
+		        angleBy="180"
+		        autoCenterTransform="true"/>
+		    <s:Move
+		        xBy="-100"
+		        autoCenterTransform="true"/>
+		</s:Parallel>
+		<s:Parallel>
+		    <s:Rotate
+		        angleBy="180"
+		        autoCenterTransform="true"/>
+		    <s:Move
+		        xBy="-100"
+			yBy="-100"
+		        autoCenterTransform="true"/>
+		</s:Parallel>
+		<s:Parallel>
+		    <s:Rotate
+		        angleBy="180"
+		        autoCenterTransform="true"/>
+		    <s:Move
+		        xBy="-100"
+		        autoCenterTransform="true"/>
+		</s:Parallel>
+	</s:Sequence>
+
+        <mx:HTTPService id="helloService" resultFormat="text" url="/assets" result="update_image(event)" method="GET" />
+    </fx:Declarations>
+
+    <s:Button label="Play Effect Forward" 
+        x="10" y="10"
+        click="parallelRMForward.end();parallelRMForward.play();"/>
+    <s:Button label="Play Effect Backward" 
+        x="150" y="10"
+        click="parallelRMBack.end();parallelRMBack.play();" />
+
+   	
+    <mx:Image id="myImage" source="{image_src}" width="150" height="125" x="10" y="50"/>
+
+</s:Application>
+
